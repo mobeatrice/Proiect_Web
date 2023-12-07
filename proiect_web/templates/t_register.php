@@ -54,12 +54,12 @@
         </div>
         <div class="form__row">
             <div class="form__field">
-                <label class="form__label fs-text" for="password">Password</label>
+                <label class="form__label fs-text" for="parola">Password</label>
                 <input class="form__data fs-text b-primary text-dark" type="password" name="parola" id="parola"
                        value= "<?php if(isset($_POST['parola'])) { echo($_POST['parola']);}?>"/>
             </div>
             <div class="form__field">
-                <label class="form__label fs-text" for="password">Confirm password</label>
+                <label class="form__label fs-text" for="parola_confirm">Confirm password</label>
                 <input class="form__data fs-text b-primary text-dark" type="password" name="parola_confirm" id="parola_confirm"
                        value= "<?php if(isset($_POST['parola_confirm'])) { echo($_POST['parola_confirm']);}?>"/>
             </div>
