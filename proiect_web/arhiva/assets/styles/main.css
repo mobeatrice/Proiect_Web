@@ -1,0 +1,141 @@
+/* Custom properties */
+:root{
+    /* Colors used */
+    --clr-light: #ffffff;
+    --clr-neutral-100: #faf9f9;
+    --clr-neutral-300: #bcc4cf;
+    --clr-neutral-800: #afb5bd;
+    
+    --clr-primary: #3f7c86;
+
+    --clr-dark: #2d3142;
+
+    /* Font sizes */
+    --fs-h1: 1.8rem;
+    --fs-btn: 1rem;
+    --fs-a: 1rem;
+    --fs-text: 0.9rem;
+    --fs-text-lg: 1rem;
+}
+/*  */
+
+/* Utility classes */
+
+/* --background-colors */
+.bg-primary{
+    background-color: var(--clr-primary);
+}
+.bg-neutral100{
+    background-color: var(--clr-neutral-100);
+}
+.bg-neutral300{
+    background-color: var(--clr-neutral-300);
+}
+.bg-neutral800{
+    background-color: var(--clr-neutral-800);
+}
+.bg-dark{
+    background-color: var(--clr-dark);
+}
+
+/* --text-color */
+.text-primary{
+    color:var(--clr-primary);
+}
+.text-neutral100{
+    color: var(--clr-neutral-100);
+}
+.text-neutral300{
+    color: var(--clr-neutral-300);
+}
+.text-neutral800{
+    color: var(--clr-neutral-800);
+}
+.text-dark{
+    color: var(--clr-dark);
+}
+
+/* --font-sizes */
+.fs-h1{
+    font-size: var(--fs-h1);
+}
+.fs-link{
+    font-size: var(--fs-a);
+}
+.fs-btn{
+    font-size: var(--fs-btn);
+}
+.fs-text{
+    font-size: var(--fs-text);
+}
+
+/* --borders */
+.b-primary{
+    border: 1px solid var(--clr-primary);
+}
+.b-neutral100{
+    border: 1px solid var(--clr-neutral-100);
+}
+.b-neutral300{
+    border: 1px solid var(--clr-neutral-300);
+}
+.b-neutral800{
+    border: 1px solid var(--clr-neutral-800);
+}
+.b-dark{
+    border: 1px solid var(--clr-dark);
+}
+/*  */
+
+html{
+    font-size: 15px;
+}
+
+html,
+body{
+    height: 100vh;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+*,
+::before,
+::after{
+    box-sizing: border-box;
+}
+
+.my-row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main.my-row{
+    padding: 0.25rem 0;
+    margin: 55px 0 0;
+    justify-content: start;
+    gap: 1rem;
+}
+
+@media(min-width: 850px){
+    html{
+        font-size: 16px;
+    }
+}
+@media (min-width: 1200px){
+    html{
+        font-size: 18px;
+    }
+}
+@media(min-width: 2000px){
+    html{
+        font-size: 20px;
+    }
+}

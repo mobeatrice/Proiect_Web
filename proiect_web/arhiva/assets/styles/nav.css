@@ -1,0 +1,367 @@
+header,
+footer{
+    width: 100%;
+    min-height: 55px !important;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--clr-neutral-100);
+}
+
+footer{
+    padding: 0.5rem 0;
+    margin-top: 2rem;
+}
+
+footer,
+.footer-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+/* Class used to toggle transparency on the header's background */
+.scrolled{
+    background-color: rgba(69, 134, 145, 0.8);
+}
+/*  */
+
+.scrolled:hover,
+.scrolled:focus{
+    background-color: var(--clr-primary);
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.menu{
+    padding: 0 2.5%;
+    max-width: 1700px;
+    margin: 0 auto;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+#logo{
+    display: flex;
+    align-items: center;
+
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+footer #logo{
+    font-size: 1.2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu__logo{
+    height: 55px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
+.menu__list{
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0 1.5rem;
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+
+    position: absolute;
+    top: 55px;
+    left: -100%;
+    z-index: 10;
+
+    max-height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10*/
+
+    transition: all  0.4s ease-in-out; 
+}
+
+.menu__list::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* class to show the menu when hamburger clicked */
+.menu__list.opened{
+    left: 0;
+}
+/*  */
+
+.menu__item{
+    width: 100%;
+    text-align: center;
+}
+
+.menu__link{
+    padding: 0.8rem 0.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.shiny-item:hover,
+.shiny-item:focus{
+    text-shadow: 1px 1px 5px var(--clr-neutral-100),
+                 -1px -1px 5px var(--clr-neutral-100);
+}
+
+.framed-item{
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 10px;
+}
+
+.framed-item--dif{
+    text-transform: none;
+    padding: 0.3rem 0.75rem !important;
+}
+
+.framed-item.shiny-item:focus,
+.framed-item.shiny-item:hover{
+    box-shadow: 0px 0.5px 4px var(--clr-neutral-100),
+                0px -0.5px 4px var(--clr-neutral-100);
+}
+/* */
+
+.sign-in,
+.register{
+    margin: 0.5rem;
+}
+
+.menu__item--pos{
+    margin-top: 2rem;
+}
+
+.btn-group a{
+    cursor: pointer;
+}
+
+/* Dropdown menu - Categories */
+.dropdown_menu{
+    max-height: 0;
+    overflow: hidden;
+
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+
+    background-color: rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+
+    box-shadow: 2px 0px 5px var(--clr-neutral-100),
+                -2px 0px 5px var(--clr-neutral-100);
+
+    transition: all 0.4s ease-in-out;
+}
+
+.dropdown_menu .menu__link{
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+/* Functional classes */
+
+.expanded{
+    max-height: 500px;
+    margin: 1rem auto 0;
+    padding: 0.5rem 0;
+}
+
+.fa-caret-down{
+    transition: transform 0.4s ease-in-out;
+    font-size: 0.8em !important;
+    transform: translateY(-2px);
+    color: var(--clr-neutral-100);
+}
+
+.upside_down{
+    transform: rotate(180deg);
+}
+/*  */
+/*  */
+
+/* Menu toggler */
+
+.menu-toggler{
+    display: block;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+}
+/*  */
+
+/* Hamburger appearance (those 3 lines) */
+
+.hamburger{
+    position: relative;
+    width: 17px;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    margin: 0 auto;
+    display: block;
+    height: 2px;
+    background-color: var(--clr-neutral-100);
+
+    transition: transform 0.3s ease-in-out, 
+                opacity 0s;
+}
+
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    position: absolute;
+}
+
+.hamburger::before{
+    width: 22px;
+    transform: translateY(-5.5px);
+}
+
+.hamburger::after{
+    width: 12px;
+    transform: translateY(5.5px);
+}
+/*  */
+
+/* Changing the hamburger appearance (from hamburger to X)*/
+
+.menu-toggler.active .hamburger{
+    width: 22px;
+    transform: rotate(-45deg);
+}
+
+.menu-toggler.active .hamburger::after{
+    opacity: 0;
+}
+
+.menu-toggler.active .hamburger::before{
+    width: 100%;
+    transform: rotate(90deg) translateY(0);
+}
+/*  */
+
+/* Dark overlay on the main content when hamburger clicked
+disabling functionality of the main content until a link it's clicked or until the menu is closed */
+
+header[data-overlay]::after{
+    content:'';
+    position: fixed;
+    inset: 0;
+    top: 55px;
+    background-color: rgb(0,0,0, 0.3);
+    z-index: 2;
+}
+/*  */
+
+@media(min-width: 850px){
+    header{
+        border-bottom: none;
+    }
+    
+    .menu-toggler{
+        display: none;
+    }
+
+    .menu{
+        padding: 0 2.5%;
+        gap: 0.75rem;
+    }
+
+    .menu__list{
+        width: 90%;
+        height: 55px;
+        padding: 1rem 0;
+        position: static;
+        flex-direction: row;
+        justify-content: start;
+        background-color: rgba(0,0,0,0);
+    }
+
+    .menu__logo{
+        flex: 1 0 auto;
+        padding: 0.5rem 0 0.75rem;
+    }
+
+    .menu__item{
+        width: auto;
+        text-align: default;
+    }
+
+    .menu__link{
+        padding: 0.75rem 0.25rem;
+    }
+    
+    .sign-in,
+    .register{
+        margin: 0;
+    }
+    
+    .menu__item--pos{
+        margin-left: auto;
+    }
+
+    /* .dropdown_btn{
+        position: relative;
+    } */
+
+    .dropdown_menu{
+        position: absolute;
+        top: 56px;
+        margin-left: 1rem;
+        padding: 0 0.5rem;
+        background-color: var(--clr-primary);
+        box-shadow: none;
+        gap: 0.5rem;
+    }
+
+    .expanded{
+        margin: 0 0 0 1rem;
+    }
+
+    .dropdown_menu .menu__link{
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .cat_btn,
+    .arhiva_btn{
+        margin-left: 2rem;
+    }
+
+    header[data-overlay]::after{
+        display: none;
+    }
+}
