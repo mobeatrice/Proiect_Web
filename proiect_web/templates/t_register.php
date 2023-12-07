@@ -6,13 +6,13 @@
                 <label class="form__label fs-text" for="nume">Nume</label>
                 <input class="form__data fs-text b-primary text-dark" type="text" name="nume" id="nume"
                        value= "<?php if(isset($_POST['nume'])) { echo($_POST['nume']);}?>" />
-            
+
             </div>
             <div class="form__field">
                 <label class="form__label fs-text" for="prenume">Prenume</label>
                 <input class="form__data fs-text b-primary text-dark" type="text" name="prenume" id="prenume"
                        value= "<?php if(isset($_POST['prenume'])) { echo($_POST['prenume']);}?>"/>
-            
+
             </div>
         </div>
         <div class="form__row">
@@ -20,13 +20,13 @@
                 <label class="form__label fs-text" for="user">Username</label>
                 <input class="form__data fs-text b-primary text-dark" type="text" name="username" id="username"
                        value= "<?php if(isset($_POST['username'])) { echo($_POST['username']);}?>"/>
-            
+
             </div>
             <div class="form__field">
                 <label class="form__label fs-text" for="email">Email</label>
                 <input class="form__data fs-text b-primary text-dark" type="email" name="email" id="email"
                        value= "<?php if(isset($_POST['email'])) { echo($_POST['email']);}?>"/>
-            
+
             </div>
         </div>
         <div class="form__row">
@@ -43,7 +43,7 @@
                         <input class="option" type="radio" id="jurnalist" name="id_rol"
                                value= "J01" <?php if(isset($_POST['id_rol']) && $_POST['id_rol'] === 'J01') { echo 'checked'; } ?> >
                     </div>
-                    
+
                     <div class="form__option">
                         <label class=" form-label form__label--radio fs-text" for="editor">Editor</label>
                         <input class="option" type="radio" id="editor" name="id_rol"

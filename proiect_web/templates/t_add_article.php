@@ -8,7 +8,6 @@ if (isset($_GET['data'])) {
 }
 ?>
 
-
 <div class="main-content col-row form__container form__container--article text-dark b-primary bg-neutral100">
     <h1 class="form__title fs-h1">Articol nou</h1>
     <form class="form col-row" action="add_articol.php?data=<?php echo urlencode($receivedData); ?>" method="post">

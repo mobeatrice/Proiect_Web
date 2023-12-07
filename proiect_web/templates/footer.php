@@ -1,5 +1,5 @@
 </main>
-<footer class="bg-primary text-neutral100">
+<footer class="primary-footer bg-primary text-neutral100">
     <!-- Copyright -->
     <div class="footer-container">
         © 2023 Copyright
