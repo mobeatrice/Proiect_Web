@@ -1,7 +1,7 @@
 
 .main-content{
     margin-top: 2rem;
-}   
+}
 
 .form__container{
     padding: 1rem 1.5rem;
@@ -15,7 +15,12 @@
 }
 
 .form__container--register{
-    width: max(50%, 300px);
+    width: max(70%, 300px);
+    max-width: 650px;
+}
+
+.form__container--article{
+    width: max(60%, 350px);
     max-width: 650px;
 }
 
@@ -29,7 +34,6 @@
 
 .form{
     width: 100%;
-    padding: 0 1rem;
 }
 
 .form__row{
@@ -64,6 +68,10 @@
     outline: none;
     border-radius: 10px;
     transition: all 0.2s ease-in;
+}
+
+textarea.form__data{
+    height: fit-content;
 }
 
 .form__data:active,
@@ -126,23 +134,34 @@
 }
 
 @media(min-width:850px){
+    .form{
+        padding: 0 1rem;
+    }
+
     .form__choices{
         width: 80%;
     }
 
-    .fs-text{
-        font-size: 1rem;
-    }
-}
-
-@media(min-width:1200px){
     .form__row{
         flex-direction: row;
         width: 100%;
     }
 
-    .fs-text{
-        font-size:var(--fs-text-lg);
+    .form__container--register{
+        width: max(70%, 300px);
+        max-width: 650px;
+    }
+}
+
+@media(min-width:1200px){
+    /* .form__row{
+        flex-direction: row;
+        width: 100%;
+    } */
+
+    .form__container--register{
+        width: max(50%, 300px);
+        max-width: 650px;
     }
 }
 

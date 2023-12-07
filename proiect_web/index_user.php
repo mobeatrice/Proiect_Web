@@ -1,16 +1,21 @@
 <?php
 session_start();
 include_once 'templates/User.php';
-include("templates/header.php");
+include("templates/header_login.php");
 include("templates/conectare.php");
 global $mysqli;
 $user = new User();
+$uid = $_SESSION['id'];
 
-if (isset($_SESSION['id']) && logged_in()) {
-    $uid = $_SESSION['id'];
-   // redirect("home.php?data=" . $user->get_username($uid));
-    redirect("index_user.php?data=" . $user->get_username($uid));
+
+include(dirname(__DIR__) . '/assets/util.php');
+if (isset($_GET['data'])) {
+    $receivedData = urldecode($_GET['data']);
+
+} else {
+    echo "No data received.";
 }
+
 
 $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
 

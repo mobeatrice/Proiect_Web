@@ -28,20 +28,20 @@ include(dirname(__DIR__).'/assets/util.php');
 
 				<li class="menu__item">
 						<li class="menu__item">
-							<a class="menu__link text-neutral100 fs-link shiny-item" href="#"> Artistic </a>
+							<a class="menu__link text-neutral100 fs-link shiny-item" href="index.php?category=arta"> Artistic </a>
 						</li>
 						<li class="menu__item">
-							<a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+							<a class="menu__link text-neutral100 fs-link shiny-item" href="index.php?category=tehnica">
 								Tehnic
 							</a>
 						</li>
 						<li class="menu__item">
-							<a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+							<a class="menu__link text-neutral100 fs-link shiny-item" href="index.php?category=stiinta">
 								Stiinta
 							</a>
 						</li>
 						<li class="menu__item">
-							<a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+							<a class="menu__link text-neutral100 fs-link shiny-item" href="index.php?category=moda">
 								Moda
 							</a>
 						</li>

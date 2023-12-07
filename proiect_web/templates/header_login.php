@@ -1,3 +1,5 @@
+
+
 <?php
 
 include(dirname(__DIR__).'/assets/util.php');
@@ -32,90 +34,67 @@ if (isset($_GET['data'])) {
         </button>
         <a class="menu__logo text-neutral100" id="logo" href="index.php"> InkTrail </a>
         <ul class="menu__list bg-primary" id="primary-navigation">
-            <li class="menu__item">
-                <a class="menu__link text-neutral100 fs-link shiny-item" href="home.php?data=<?php echo urlencode($receivedData); ?>"> Acasa </a>
-            </li>
 
             <li class="menu__item">
-                <a class="dropdown_btn cat_btn menu__link text-neutral100 fs-link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
-                    Categorii <i class="fa-solid fa-caret-down"></i>
-                </a>
-                <ul class="dropdown_menu cat_menu" id="categories_dropdown">
+
                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=arta&data=<?php echo urlencode($receivedData); ?>">
                             Artistic
                         </a>
                     </li>
                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=tehnica&data=<?php echo urlencode($receivedData); ?>">
                             Tehnic
                         </a>
                     </li>
                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=stiinta&data=<?php echo urlencode($receivedData); ?>">
                             Stiinta
                         </a>
                     </li>
                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=moda&data=<?php echo urlencode($receivedData); ?>">
                             Moda
                         </a>
                     </li>
-                </ul>
             </li>
+
             <li class="menu__item">
-                <a class="dropdown_btn arhiva_btn menu__link text-neutral100 fs-link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
-                    Articole <i class="fa-solid fa-caret-down"></i>
-                </a>
-                <ul class="dropdown_menu arhiva_menu" id="categories_dropdown">
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
-                            Aprobate
-                        </a>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
-                            Refuzate
-                        </a>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
-                            Draft
-                        </a>
-                    </li>
-
-                </ul>
+                <a class="menu__link text-neutral100 fs-link shiny-item" href="home.php?data=<?php echo urlencode($receivedData); ?>"> Portofoliu </a>
             </li>
 
 
 
+            <!--
             <li class="menu__item menu__item--pos sign-in">
                 <a class="menu__link framed-item text-neutral100 fs-link b-neutral100 shiny-item" href="#"><i class="fa-solid fa-user"> </i> <?php echo  $receivedData  ?> </a>
             </li>
             <li class="menu__item register">
                 <a class="menu__link framed-item text-neutral100 fs-link b-neutral100 shiny-item" href="home_2.php?q=logout"> Log Out </a>
-            </li>
+            </li> -->
 
-            <!--
+
             <li class="menu__item menu__item--pos user">
                 <a class="dropdown_btn user_btn menu__link framed-item b-neutral100 text-neutral100 fs-link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
+
                     <i class="fa-solid fa-user"> </i> <?php echo  $receivedData  ?> <i class="fa-solid fa-caret-down"></i>
                 </a>
                 <ul class="dropdown_menu user_menu" id="user_dropdown">
                     <li class="menu__item">
 
-
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <!-- Articole pentru utilizatorii jurnalisti si editori -->
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="home.php?data=<?php echo urlencode($receivedData); ?>">
                             <i class="fa-regular fa-newspaper"></i> Articole
                         </a>
                     </li>
                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="#">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="home_2.php?q=logout">
                             <i class="fa-solid fa-arrow-right-from-bracket"> </i> Log Out
                         </a>
                     </li>
                 </ul>
-            </li> -->
+            </li>
+
 
 
         </ul>
