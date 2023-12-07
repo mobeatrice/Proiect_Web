@@ -126,6 +126,10 @@ textarea.form__data{
     transition: all 0.2s ease-in-out;
 }
 
+.add-btn{
+    margin: auto 0.5rem 0;
+}
+
 .form__btn:hover,
 .form__btn:focus{
     background-color: var(--clr-neutral-800);

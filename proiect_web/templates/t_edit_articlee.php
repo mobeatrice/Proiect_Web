@@ -39,7 +39,10 @@
             </div>
         </div>
         <div class="form__field btn-field">
-            <input class="form__btn text-dark fs-btn bg-neutral300 b-neutral800" type="submit" name="update" value="Salveaza">
+            <div class="btn-group">
+                <a href="home.php" class="form__btn add-btn text-dark fs-btn bg-neutral300 b-neutral800" type="submit" name="save" >Salveaza</a>
+                <a href="home.php" class="form__btn add-btn text-dark fs-btn bg-neutral300 b-neutral800" type="submit" name="send">Trimite</a>
+            </div>
         </div>
     </form>
 </div>
