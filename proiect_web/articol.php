@@ -7,21 +7,24 @@ global $mysqli;
 $user = new User();
 
 include_once(dirname(__FILE__).'/assets/util.php');
+
 if (isset($_GET['id_articol'])) {
-    $receivedData = urldecode($_GET['id_articol']);
+    $receivedData = urldecode($_GET['id_articol']); //luam din link id_articol
 
 } else {
     echo "No data received.";
 }
 
-if (isset($_SESSION['id']) && logged_in()) {
+if (isset($_SESSION['id']) && logged_in()) { //daca estee logat verificam daca e editor sau jurnalist
     $uid = $_SESSION['id'];
     $rol = $user->get_Rol($uid);
     if($rol == 'E01' || $rol =='J01') {
+        //fiindca este editor sau jurnalist vom redirectiona spree login cu mesajul de eroare
         redirect("login.php?error=Ai nevoie de un cont de cititor pentru a vizualiza articolul.");
     }
 }
 else {
+    //am intrat pe ramura else pentru ca nu este logat deci trebuie sa se logheze
     redirect("login.php?error=Ai nevoie de un cont de cititor pentru a vizualiza articolul.");
 }
 
@@ -31,15 +34,17 @@ else {
     <section class="article-content col">
 
         <?php
-
+//$receivedData este id-ul articolului pe care l-am luat din link
         if ($result = $mysqli->query("SELECT * FROM articol WHERE id_articol=$receivedData"))
         {
+            //luam articolul caree are id-ul din link si il afisam
             $row = $result->fetch_object();
             $autorValue = $row->autor;
             $categorieValue = $row->id_categorie;
             if ($result->num_rows > 0)
             { ?>
             <h1 class="fs-h1 text-accent300 title"><?php echo $row->titlu ?></h1>
+                <!-- functiile get_categorie si get_autor sunt in User.php -->
                 <p class="category fs-category"><?php echo $user->get_categorie($categorieValue) ?></p>
                 <p class="article-author fs-date text-dark"><?php echo $user->get_autor($autorValue)?></p>
                 <div class="article-text">
@@ -60,6 +65,7 @@ else {
         <h2 class="fs-h2 title aside-title">Ultimele articole</h2>
 
         <?php
+        //aici afisam articoleele aprobate in partea dreapta
         if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
         {
         $row = $result->fetch_object();

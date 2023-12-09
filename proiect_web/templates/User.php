@@ -30,7 +30,6 @@ public function reg_user($nume, $prenume,$user,$password,$email)
 
 /*** Login ***/
 public function check_login($user, $password){
-    $parola = md5($password);
     $sql2="SELECT id from users WHERE username='$user' and parola='$password'";
     //verific daca username exista
     $result = mysqli_query($this->db,$sql2);
@@ -49,6 +48,7 @@ public function check_login($user, $password){
 
 /*** afisare username sau fullname ***/
 public function get_username($id){
+    //afisam username in functie de id
     $sql3="SELECT username FROM users WHERE id = $id";
     $result = mysqli_query($this->db,$sql3);
     $user_data = mysqli_fetch_array($result);
@@ -56,6 +56,7 @@ public function get_username($id){
 }
 
 public function get_idRol($user){
+    //afisam id_rol in functie de username
         $sql4="SELECT id_rol FROM users WHERE username = '$user'";
         $result2 = mysqli_query($this->db,$sql4);
         $user_data = mysqli_fetch_array($result2);
@@ -63,6 +64,7 @@ public function get_idRol($user){
     }
 
  public function get_Rol($id){
+    //afisam id rol in functie de id
         $sql4="SELECT id_rol FROM users WHERE id = '$id'";
         $result2 = mysqli_query($this->db,$sql4);
         $user_data = mysqli_fetch_array($result2);
@@ -75,7 +77,7 @@ public function get_idRol($user){
 
 public function get_autor($id)
 {
-
+//luam numele complet al autorului in functie de id
     $sql5="SELECT nume, prenume FROM users WHERE users.id = '$id'";
     $result3=mysqli_query($this->db, $sql5);
     $user_data = mysqli_fetch_array($result3);
@@ -85,7 +87,7 @@ public function get_autor($id)
 
     public function get_categorie($id)
     {
-
+//luam categoria in functie de id
         $sql6="SELECT nume_categorie FROM categorie WHERE categorie.id_categorie = '$id'";
         $result4=mysqli_query($this->db, $sql6);
         $user_data=mysqli_fetch_array($result4);

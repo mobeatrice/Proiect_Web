@@ -6,22 +6,29 @@ include("templates/conectare.php");
 global $mysqli;
 $user = new User();
 
+//verificam daca este logat si in functie de asta il redirectionam spr eun alt index
 if (isset($_SESSION['id']) && logged_in()) {
     $uid = $_SESSION['id'];
     $rol = $user->get_Rol($uid);
-   // redirect("home.php?data=" . $user->get_username($uid));
     if($rol != 'C01') {
+        //pentru ca nu este cititor il redireectionam spree index_user si ii setam data=username
+        //data este ce folosim la inceput pentru a stii pentru ce username sa afisam articolele si a pune username-ul in header la logout
         redirect("index_user.php?data=" . $user->get_username($uid));
     }else
     {
+        //pentru ca este cititor il trimiteme spre index ul lui
         redirect("index_cititor.php?data=" . $user->get_username($uid));
     }
 }
+
+//aici verificam daca am selectat o categorie sau daca sunt toate selectate, adica suntem pe index  simplu
+//categoria se trimite in link in header atunci cand dam click pe unul dintre cuvintee ex: index_user.php?category=stiinta
 $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
 ?>
 
 <div class="container">
     <?php
+    //daca sunt toate cateegoriile selectate vom afisa toate articolele aprobate
     if ($selectedCategory  == 'all')
     {
         if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
@@ -94,6 +101,7 @@ $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
             echo "Error: " . $mysqli->error();
         }
     }
+    //in schimb daca este o categorie selectata
     else {
         if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
         { // Afisare inregistrari pe ecran
@@ -103,7 +111,7 @@ $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
                 {
                     $autorValue = $row->autor;
                     $categorieValue = $row->id_categorie;
-
+//aici aifam doar articolele de pe cateegoria selectata
                     if ( $user->get_categorie($categorieValue)==$selectedCategory)
                     {
                             ?>

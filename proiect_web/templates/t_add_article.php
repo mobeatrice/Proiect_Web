@@ -1,11 +1,10 @@
 <?php
-
+//aici luam informatia pe care am trimiso atunci cand am pus linkul de exemplu index.php?data=ceva
 if (isset($_GET['data'])) {
     $receivedData = urldecode($_GET['data']);
-
 } else {echo "No data received.";}
 ?>
-
+<!-- tot ce este pus cu POST va putea fi luat cu GET sau atunci cand verificam daca metoda este POST -->
 <div class="main-content col-row form__container form__container--article text-dark b-primary bg-neutral100">
     <h1 class="form__title fs-h1">Articol nou</h1>
     <form class="form col-row" action="add_articol.php?data=<?php echo urlencode($receivedData); ?>" method="post">

@@ -8,18 +8,22 @@ include 'templates/t_edit_article.php';
 $user = new User();
 $uid = $_SESSION['id'];
 
+//acest fisier modifica ce afisam in t_edit_article.php
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 { // preluam variabilele din URL/form
             if (isset($receivedId))
-            {$id_articol = $receivedId;}
-            $titlu = htmlentities($_POST['titlu'], ENT_QUOTES);
-            $continut_articol = htmlentities($_POST['continut_articol'], ENT_QUOTES);
-            $tip_articol = htmlentities($_POST['submit'], ENT_QUOTES);
-            // verificam daca titlul si continutul nu sunt goale
-            if ($titlu == '' || $continut_articol == '' )
-            { // daca sunt goale afisam mesaj de eroare
-                echo "<div> ERROR: Completati campurile obligatorii!</div>";
+            {
+                $id_articol = $receivedId;
             }
+            //preluam dateele din formularul de editare
+                $titlu = htmlentities($_POST['titlu'], ENT_QUOTES);
+                $continut_articol = htmlentities($_POST['continut_articol'], ENT_QUOTES);
+                $tip_articol = htmlentities($_POST['submit'], ENT_QUOTES);
+                // verificam daca titlul si continutul nu sunt goale
+                if ($titlu == '' || $continut_articol == '' )
+                { // daca sunt goale afisam mesaj de eroare
+                    echo "<div> ERROR: Completati campurile obligatorii!</div>";
+                }
             else {
                 // daca nu sunt erori se face update
                 if ($tip_articol == 'Draft') {
@@ -48,11 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
             }
         }
-        // daca variabila 'id' nu este valida, afisam mesaj de eroare
-
-
-
-
 
 include 'templates/footer.php';
 ?>

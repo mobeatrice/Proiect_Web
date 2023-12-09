@@ -8,7 +8,6 @@ global $mysqli;
 $user = new User();
 $uid = $_SESSION['id'];
 
-
 if (isset($_GET['data']))
 {
     $receivedData = urldecode($_GET['data']);
