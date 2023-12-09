@@ -19,11 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($titlu)) {
         echo "All fields are required.";
     } else {
-            // Insert user into the database
 
-            $result=$mysqli->query("SELECT id FROM users WHERE id_rol='E01' ORDER BY RAND() LIMIT 1");
-            $row = $result->fetch_assoc();
-            $editorId = $row['id'];
+            $numbers = array(4, 5, 10);
+            $randomKey = array_rand($numbers);
+            $editorId = $numbers[$randomKey];
+
             $result2=$mysqli->query("SELECT id_categorie FROM users WHERE id=$uid");
             $row2 = $result2->fetch_assoc();
             $categorie = $row2['id_categorie'];

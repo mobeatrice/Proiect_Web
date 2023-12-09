@@ -11,23 +11,23 @@ class User{
     }
 }
 /*** inregistrare ***/
-public function reg_user($nume, $prenume,$user,$password,$email){
-$parola = md5($password);
-$sql="SELECT * FROM users WHERE username='$user' OR
-email='$email'";
-//verific dacae username or email sunt in bd
-$check = $this->db->query($sql) ;
-$count_row = $check->num_rows;
-//daca username nu este in tabel
-if ($count_row == 0){
-$sql1="INSERT INTO users SET
-username='$user', parola='$password', nume='$nume', prenume= '$prenume', email='$email'";
-$result = mysqli_query($this->db,$sql1) or
-die(mysqli_connect_errno()."Nu pot insera");
-return $result;
+public function reg_user($nume, $prenume,$user,$password,$email)
+{
+    $sql="SELECT * FROM users WHERE username='$user' OR
+    email='$email'";
+    //verific dacae username or email sunt in bd
+    $check = $this->db->query($sql) ;
+    $count_row = $check->num_rows;
+    //daca username nu este in tabel
+    if ($count_row == 0){
+    $sql1="INSERT INTO users SET
+    username='$user', parola='$password', nume='$nume', prenume= '$prenume', email='$email'";
+    $result = mysqli_query($this->db,$sql1) or  die(mysqli_connect_errno()."Nu pot insera");
+    return $result;
+    }
+        else { return false;}
 }
-else { return false;}
-}
+
 /*** Login ***/
 public function check_login($user, $password){
     $parola = md5($password);
@@ -47,7 +47,7 @@ public function check_login($user, $password){
 }
 
 
-/*** afisare username sau fulname ***/
+/*** afisare username sau fullname ***/
 public function get_username($id){
     $sql3="SELECT username FROM users WHERE id = $id";
     $result = mysqli_query($this->db,$sql3);
@@ -55,6 +55,43 @@ public function get_username($id){
     return $user_data['username'];
 }
 
+public function get_idRol($user){
+        $sql4="SELECT id_rol FROM users WHERE username = '$user'";
+        $result2 = mysqli_query($this->db,$sql4);
+        $user_data = mysqli_fetch_array($result2);
+        return $user_data['id_rol'];
+    }
+
+ public function get_Rol($id){
+        $sql4="SELECT id_rol FROM users WHERE id = '$id'";
+        $result2 = mysqli_query($this->db,$sql4);
+        $user_data = mysqli_fetch_array($result2);
+        if($user_data) {
+            return $user_data['id_rol'];
+        }
+        else {return false; }
+    }
+
+
+public function get_autor($id)
+{
+
+    $sql5="SELECT nume, prenume FROM users WHERE users.id = '$id'";
+    $result3=mysqli_query($this->db, $sql5);
+    $user_data = mysqli_fetch_array($result3);
+    $fullname=$user_data['nume']. ' '.$user_data['prenume'];
+    return $fullname;
+}
+
+    public function get_categorie($id)
+    {
+
+        $sql6="SELECT nume_categorie FROM categorie WHERE categorie.id_categorie = '$id'";
+        $result4=mysqli_query($this->db, $sql6);
+        $user_data=mysqli_fetch_array($result4);
+        $categorie=$user_data['nume_categorie'];
+        return $categorie;
+    }
 
 /*** start session ***/
 public function get_session(){

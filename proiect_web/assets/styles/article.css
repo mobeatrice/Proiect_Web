@@ -114,8 +114,10 @@
 .error{
     margin: 0.5rem auto;
     text-align: center;
+    color: white;
     padding: 0.25rem;
     border-radius: 10px;
+    background-color: crimson;
 }
 
 @media(min-width: 850px){

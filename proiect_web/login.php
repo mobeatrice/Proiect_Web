@@ -3,13 +3,33 @@ session_start();
 include_once 'templates/User.php';
 include 'templates/header.php';
 $user = new User();  //in fisierul User.php mi-am declarat o clasa User si aici imi creezi un user de tipul User
+
+
+if(logged_in()) {
+    $uid = $_SESSION['id'];
+}
+if (isset($_GET['error'])) {
+    echo '<p class="error">' . htmlspecialchars($_GET['error']) . '</p>';
+}
+
 if (isset($_REQUEST['submit'])) {
     extract($_REQUEST);
     $login = $user->check_login($username, $parola); //verific daca e logged in
     if ($login) {
         // Inregistrare cu succes - ma duc la pagina de home cu username-ul lui
-        redirect("home.php?data=" . urlencode($username));
-    } else {
+            //redirect("home.php?data=" . urlencode($username));
+
+        $rol = $user->get_idRol($username);
+        // redirect("home.php?data=" . $user->get_username($uid));
+        if($rol != 'C01') {
+            redirect("home.php?data=" . urlencode($username));
+        }else
+        {
+            redirect("index_cititor.php?data=" . urlencode($username));
+        }
+
+        }
+     else {
         // Inregistrare cu esec - s-a gresit user sau parola
         echo 'Username sau password gresit!';
     }

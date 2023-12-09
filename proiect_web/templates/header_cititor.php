@@ -1,6 +1,8 @@
+
+
 <?php
 
-include_once(dirname(__DIR__).'/assets/util.php');
+include(dirname(__DIR__).'/assets/util.php');
 if (isset($_GET['data'])) {
     $receivedData = urldecode($_GET['data']);
 
@@ -32,33 +34,29 @@ if (isset($_GET['data'])) {
             <span class="hamburger"></span>
         </button>
 
-        <a class="menu__logo text-neutral100" id="logo" href="index.php"> InkTrail </a>
+        <a class="menu__logo text-neutral100" id="logo" href="index_cititor.php?data=<?php echo urlencode($receivedData); ?>"> InkTrail </a>
 
         <ul class="menu__list bg-primary" id="primary-navigation">
             <!-- If journalist or editor -->
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=arta&data=<?php echo urlencode($receivedData); ?>">
-                            Arta
-                        </a>
-                    </li>
-                     <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=moda&data=<?php echo urlencode($receivedData); ?>">
-                            Moda
-                        </a>
-                     </li>
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=stiinta&data=<?php echo urlencode($receivedData); ?>">
-                            Stiinta
-                        </a>
-                    </li>
-                    <li class="menu__item">
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_user.php?category=tehnica&data=<?php echo urlencode($receivedData); ?>">
-                            Tehnic
-                        </a>
-                    </li>
-
             <li class="menu__item">
-                <a class="menu__link text-neutral100 fs-link shiny-item" href="home.php?data=<?php echo urlencode($receivedData); ?>"> Portofoliu </a>
+                <a class="menu__link text-neutral100 fs-link shiny-item" href="index_cititor.php?category=arta&data=<?php echo urlencode($receivedData); ?>">
+                    Arta
+                </a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link text-neutral100 fs-link shiny-item" href="index_cititor.php?category=moda&data=<?php echo urlencode($receivedData); ?>">
+                    Moda
+                </a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link text-neutral100 fs-link shiny-item" href="index_cititor.php?category=stiinta&data=<?php echo urlencode($receivedData); ?>">
+                    Stiinta
+                </a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link text-neutral100 fs-link shiny-item" href="index_cititor.php?category=tehnica&data=<?php echo urlencode($receivedData); ?>">
+                    Tehnic
+                </a>
             </li>
 
 
@@ -70,7 +68,7 @@ if (isset($_GET['data'])) {
                 <ul class="dropdown_menu user_menu" id="user_dropdown">
                     <li class="menu__item">
                         <!-- Articole pentru utilizatorii jurnalisti si editori -->
-                        <a class="menu__link text-neutral100 fs-link shiny-item" href="home.php?data=<?php echo urlencode($receivedData); ?>">
+                        <a class="menu__link text-neutral100 fs-link shiny-item" href="index_cititor.php?data=<?php echo urlencode($receivedData); ?>">
                             <i class="fa-regular fa-newspaper"></i> Articole
                         </a>
                     </li>

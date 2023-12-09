@@ -8,137 +8,134 @@ $user = new User();
 
 if (isset($_SESSION['id']) && logged_in()) {
     $uid = $_SESSION['id'];
+    $rol = $user->get_Rol($uid);
    // redirect("home.php?data=" . $user->get_username($uid));
-    redirect("index_user.php?data=" . $user->get_username($uid));
+    if($rol != 'C01') {
+        redirect("index_user.php?data=" . $user->get_username($uid));
+    }else
+    {
+        redirect("index_cititor.php?data=" . $user->get_username($uid));
+    }
 }
-
 $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
+?>
 
-if ($selectedCategory  == 'all')
+<div class="container">
+    <?php
+    if ($selectedCategory  == 'all')
+    {
+        if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
+        { // Afisare inregistrari pe ecran
+            if ($result->num_rows > 0)
+            {
+                    $row = $result->fetch_object();
+                    $autorValue = $row->autor;
+                    $categorieValue = $row->id_categorie;
+                    ?>
+                        <section class="hero text-neutral100 bg-accent800">
+                        <article class="hero__article">
+                        <h1 class="hero__title fs-h1"><a href="articol.php?id_articol=<?php echo $row->id_articol?>"  target=”_blank” class="article-link text-accent300" ><?php echo $row->titlu ?></a></h1>
+                        <p class="category fs-category"><?php echo $user->get_categorie($categorieValue) ?></p>
+                        <p class="hero__text fs-text-lg"><?php echo substr($row->continut_articol,0,250) ?></p>
+                        <footer class="article__footer">
+                            <p class="fs-date article__date">Last modified:<date> <em><?php echo $row->data_creare  . ' by ' . $user->get_autor($autorValue)?></em> </date> </p
+                        </footer>
+                        </article>
+                        </section>
+                <?php
+                while ($row= $result->fetch_object())
+                {
+                    $autorValue = $row->autor;
+                    $categorieValue = $row->id_categorie;
+                    ?>
 
-{
-    echo '<div class="container">';
-    if ($result = $mysqli->query("SELECT * FROM articol ORDER BY data_creare")) { // Afisare inregistrari pe ecran
+                    <section class="col-row main-articles">
+                        <div class="row">
+                            <div class="col-row article-container">
+                                <article class="article">
+                                    <h2 class="article__title fs-h2"><a href="articol.php?id_articol=<?php echo $row->id_articol?>"  target=”_blank” class="article-link text-accent300"><?php echo $row->titlu ?></a></h2>
+                                    <p class="category fs-category"><?php echo $user->get_categorie($categorieValue) ?></p>
+                                    <p class="article__text fs-text-lg"><?php echo substr($row->continut_articol,0,250) ?></p>
+                                    <footer class="article__footer">
+                                        <p class="fs-date article__date">Last modified:<date> <em><?php echo $row->data_creare  . ' by ' . $user->get_autor($autorValue)?></em> </date> </p>
+                                    </footer>
+                                </article>
+                                <hr/>
+                            </div>
+                            <?php
+                            $row = $result->fetch_object();
+                            if ($row)
+                            {
+                            ?>
+                            <div class="col-row article-container">
+                                <article class="article">
+                                    <h2 class="article__title fs-h2"><a href="articol.php?id_articol=<?php echo $row->id_articol?>"  target=”_blank” class="article-link text-accent300"><?php echo $row->titlu ?></a></h2>
+                                    <p class="category fs-category"><?php echo $user->get_categorie($categorieValue) ?></p>
+                                    <p class="article__text fs-text-lg"><?php echo substr($row->continut_articol,0,250) ?></p>
+                                    <footer class="article__footer">
+                                        <p class="fs-date article__date">Last modified:<date> <em><?php echo $row->data_creare  . ' by ' . $user->get_autor($autorValue)?></em>  </date> </p>
+                                    </footer>
+                                </article>
+                                <hr/>
+                            </div>
+                        </div>
+                        <?php
+                        }?>
+                    </section>
+                <?php
 
-        if ($result->num_rows > 0) {
-            echo '<div class="container col-row">';
-            echo '<section class="col-row main-articles">';
-            while ($row = $result->fetch_object()) {
-
-                echo '<div class="row">';
-                echo '<article class="article">';
-
-                $autorValue = $row->autor;
-                $stmt = $mysqli->prepare("SELECT nume, prenume FROM users WHERE users.id = ?");
-                $stmt->bind_param("s", $autorValue);
-                $stmt->execute();
-                $result2 = $stmt->get_result();
-                if ($result2->num_rows > 0) {
-                    $row2 = $result2->fetch_assoc();
-                    $fullName = $row2['nume'] . ' ' . $row2['prenume'];
-                } else {
-                    echo "Author not found";
                 }
-
-                $categorieValue = $row->id_categorie;
-                $stmt = $mysqli->prepare("SELECT nume_categorie FROM categorie WHERE categorie.id_categorie = ?");
-                $stmt->bind_param("s", $categorieValue);
-                $stmt->execute();
-                $result3 = $stmt->get_result();
-                if ($result3->num_rows > 0) {
-                    $row3 = $result3->fetch_assoc();
-                    $categorieName = $row3['nume_categorie'];
-                } else {
-                    echo "Category not found";
-                }
-
-
-                if ($row->status == "aprobat") {
-
-                    echo '<h2 class="article__title fs-h2"><a href="#" class="article-link text-accent-300">' . $row->titlu . '</a></h2>';
-                    echo ' <p class="category fs-category">' . $categorieName . '</p>';
-                    echo '<p class="article__text fs-text-lg">' . $row->continut_articol . '</p>';
-                    echo '<p class="fs-date article__date">Last modified:<date> <em>' . $row->data_creare . ' by ' . $fullName . '</em> </date> </p>';
-                    echo '<hr/>';
-                }
-                $stmt->close();
-                echo '</article>';
-                echo '</div>';
-                echo '</section>';
+            } // daca nu sunt inregistrari se afiseaza un rezultat de eroare
+            else {
+                echo "Nu sunt inregistrari in tabela!";
             }
-            echo '</div>';
-        } // daca nu sunt inregistrari se afiseaza un rezultat de eroare
+        } // eroare in caz de insucces in interogare
         else {
-            echo "Nu sunt inregistrari in tabela!";
+            echo "Error: " . $mysqli->error();
         }
-    } // eroare in caz de insucces in interogare
-    else {
-        echo "Error: " . $mysqli->error();
     }
-}
-else {
-    echo '<div class="container">';
-    if ($result = $mysqli->query("SELECT * FROM articol ORDER BY data_creare")) { // Afisare inregistrari pe ecran
+    else {
+        if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
+        { // Afisare inregistrari pe ecran
+            if ($result->num_rows > 0)
+            {
+                while ($row = $result->fetch_object())
+                {
+                    $autorValue = $row->autor;
+                    $categorieValue = $row->id_categorie;
 
-        if ($result->num_rows > 0) {
-            echo '<div class="container col-row">';
-            echo '<section class="col-row main-articles">';
-            while ($row = $result->fetch_object()) {
+                    if ( $user->get_categorie($categorieValue)==$selectedCategory)
+                    {
+                            ?>
+                        <div class="col-row article-container">
+                                <article class="article">
 
-                echo '<div class="row">';
-                echo '<article class="article">';
-
-                $autorValue = $row->autor;
-                $stmt = $mysqli->prepare("SELECT nume, prenume FROM users WHERE users.id = ?");
-                $stmt->bind_param("s", $autorValue);
-                $stmt->execute();
-                $result2 = $stmt->get_result();
-                if ($result2->num_rows > 0) {
-                    $row2 = $result2->fetch_assoc();
-                    $fullName = $row2['nume'] . ' ' . $row2['prenume'];
-                } else {
-                    echo "Author not found";
+                                    <h2 class="article__title fs-h2"><a href="articol.php?id_articol=<?php echo $row->id_articol?>"  target=”_blank” class="article-link text-accent300"><?php echo $row->titlu ?></a></h2>
+                                    <p class="category fs-category"><?php echo $user->get_categorie($categorieValue) ?></p>
+                                    <p class="article__text fs-text-lg"><?php echo substr($row->continut_articol,0,250) ?></p>
+                                    <footer class="article__footer">
+                                        <p class="fs-date article__date">Last modified:<date> <em><?php echo $row->data_creare  . ' by ' . $user->get_autor($autorValue)?></em>  </date> </p>
+                                    </footer>
+                                </article>
+                                <hr/>
+                        </div>
+                        <?php
+                    }?>
+                    </section>
+                    <?php
                 }
-
-                $categorieValue = $row->id_categorie;
-                $stmt = $mysqli->prepare("SELECT nume_categorie FROM categorie WHERE categorie.id_categorie = ?");
-                $stmt->bind_param("s", $categorieValue);
-                $stmt->execute();
-                $result3 = $stmt->get_result();
-                if ($result3->num_rows > 0) {
-                    $row3 = $result3->fetch_assoc();
-                    $categorieName = $row3['nume_categorie'];
-                } else {
-                    echo "Category not found";
-                }
-
-
-                if ($row->status == "aprobat" && $categorieName==$selectedCategory) {
-
-                    echo '<h2 class="article__title fs-h2"><a href="#" class="article-link text-accent-300">' . $row->titlu . '</a></h2>';
-                    echo ' <p class="category fs-category">' . $categorieName . '</p>';
-                    echo '<p class="article__text fs-text-lg">' . $row->continut_articol . '</p>';
-                    echo '<p class="fs-date article__date">Last modified:<date> <em>' . $row->data_creare . ' by ' . $fullName . '</em> </date> </p>';
-                    echo '<hr/>';
-                }
-                $stmt->close();
-                echo '</article>';
-                echo '</div>';
-                echo '</section>';
-
-            }
-            echo '</div>';
-        } // daca nu sunt inregistrari se afiseaza un rezultat de eroare
+            }// daca nu sunt inregistrari se afiseaza un rezultat de eroare
+            else {echo "Nu sunt inregistrari in tabela!";}
+        } // eroare in caz de insucces in interogare
         else {
-            echo "Nu sunt inregistrari in tabela!";
-        }
-    } // eroare in caz de insucces in interogare
-    else {
-        echo "Error: " . $mysqli->error();
+            echo "Error: " . $mysqli->error();}
     }
-}
-// se inchide
-$mysqli->close();
-echo '</div>';
+    // se inchide
+    $mysqli->close();
+?>
+
+</div>
+
+<?php
 include 'templates/footer.php';
 ?>

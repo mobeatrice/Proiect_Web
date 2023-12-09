@@ -3,9 +3,7 @@
 if (isset($_GET['data'])) {
     $receivedData = urldecode($_GET['data']);
 
-} else {
-    echo "No data received.";
-}
+} else {echo "No data received.";}
 ?>
 
 <div class="main-content col-row form__container form__container--article text-dark b-primary bg-neutral100">

@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $parola = $_POST["parola"];
+    $parola_confirm = $_POST["parola_confirm"];
     $id_rol = $_POST["id_rol"];
 
 
@@ -19,31 +20,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username) || empty($email) || empty($parola)) {
         echo "All fields are required.";
     } else {
-        // verificam sa vedem daca nu sunt deja folosite usernameeul sau parola
-        $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
-        $checkResult = $mysqli->query($checkQuery);
-
-        if ($checkResult->num_rows > 0) {
-            echo "Username-ul sau parola deja exista.";
+        if ($parola != $parola_confirm) {
+            echo "Parolele trebuie sa coincida.";
         } else {
-            // inseram userul in baza de date
-            if  ($id_rol='J01') //verificat daca useruk e jurnalist
-            {
-                $numbers = array(101, 102, 103, 104);
-                $randomKey = array_rand($numbers);//iau un random intre 101-104 pentru a adauga o categorie jurnalistului
-                $randomNumber = $numbers[$randomKey];
-                $insertQuery = "INSERT INTO users (nume, prenume, username, email, parola, id_rol, id_categorie) VALUES ('$nume', '$prenume','$username', '$email', '$parola', '$id_rol', '$randomNumber')";
+            // verificam sa vedem daca nu sunt deja folosite usernameeul sau parola
+            $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+            $checkResult = $mysqli->query($checkQuery);
 
-            }else //daca nu e jurnalist adaug dateele pentru cititor sau editor
-            {
-                $insertQuery = "INSERT INTO users (nume, prenume, username, email, parola, id_rol) VALUES ('$nume', '$prenume','$username', '$email', '$parola', '$id_rol')";
-
-            }
-
-            if ($mysqli->query($insertQuery) === TRUE) {
-                echo "Registration successful.";
+            if ($checkResult->num_rows > 0) {
+                echo "Username-ul sau parola deja exista.";
             } else {
-                echo "Error: " . $insertQuery . "<br>" . $mysqli->error;
+                // inseram userul in baza de date
+                if ($id_rol == 'J01') //verificat daca useruk e jurnalist
+                {
+                    $numbers = array(101, 102, 103, 104);
+                    $randomKey = array_rand($numbers);//iau un random intre 101-104 pentru a adauga o categorie jurnalistului
+                    $randomNumber = $numbers[$randomKey];
+                    $insertQuery = "INSERT INTO users (nume, prenume, username, email, parola, id_rol, id_categorie) VALUES ('$nume', '$prenume','$username', '$email', '$parola', '$id_rol', '$randomNumber')";
+
+                } else //daca nu e jurnalist adaug dateele pentru cititor sau editor
+                {
+                    $insertQuery = "INSERT INTO users (nume, prenume, username, email, parola, id_rol) VALUES ('$nume', '$prenume','$username', '$email', '$parola', '$id_rol')";
+
+                }
+
+                if ($mysqli->query($insertQuery) === TRUE) {
+                    echo "Registration successful.";
+                } else {
+                    echo "Error: " . $insertQuery . "<br>" . $mysqli->error;
+                }
             }
         }
     }
