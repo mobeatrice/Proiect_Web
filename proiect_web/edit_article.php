@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     $tip='asteptare';
                     if ($stmt = $mysqli->prepare("UPDATE articol SET titlu=?,continut_articol=?, status=? WHERE id_articol=$id_articol"))
                     {
-                        $stmt->bind_param("s", $titlu, $continut_articol, $tip);
+                        $stmt->bind_param("sss", $titlu, $continut_articol, $tip);
                         $stmt->execute();
                         $stmt->close();
                     } // mesaj de eroare in caz ca nu se poate face update

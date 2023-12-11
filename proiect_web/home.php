@@ -48,8 +48,7 @@ if($user->get_Rol($uid)=='J01'){
                         $categorieValue = $row->id_categorie;
 
                         if ($row->status == "aprobat") { ?>
-                            <h3 class="article__title fs-h3"><a href="#"
-                                                                class="article-link text-accent300"><?php echo $row->titlu ?></a>
+                            <h3 class="article__title fs-h3"><a href="#" class="article-link text-accent300"><?php echo $row->titlu ?></a>
                             </h3>
                             <p class="category fs-category"><?php echo $user->get_categorie($categorieValue)?></p>
                             <p class="article__text fs-text"> <?php echo $row->continut_articol ?></p>

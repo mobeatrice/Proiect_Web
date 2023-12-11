@@ -2,7 +2,7 @@
 session_start();
 include_once 'templates/User.php';
 include 'templates/header.php';
-$user = new User();  //in fisierul User.php mi-am declarat o clasa User si aici imi creezi un user de tipul User
+$user = new User();
 
 
 if(logged_in()) {
@@ -14,13 +14,10 @@ if (isset($_GET['error'])) {
 
 if (isset($_REQUEST['submit'])) {
     extract($_REQUEST);
-    $login = $user->check_login($username, $parola); //verific daca e logged in
+    $login = $user->check_login($username, $parola);
     if ($login) {
-        // Inregistrare cu succes - ma duc la pagina de home cu username-ul lui
-            //redirect("home.php?data=" . urlencode($username));
 
         $rol = $user->get_idRol($username);
-        // redirect("home.php?data=" . $user->get_username($uid));
         if($rol != 'C01') {
             redirect("home.php?data=" . urlencode($username));
         }else
@@ -37,14 +34,14 @@ if (isset($_REQUEST['submit'])) {
 ?>
 
 <script type="text/javascript" language="javascript">
-    function submitlogin() { //functia de login depe butonul delog in onclick="return(submitlogin());"
+    function submitlogin() {
         var form = document.login;
-        if(form.username.value == ""){ //in caz ca nu am introdus usernameul primes eroaree
+        if(form.username.value == ""){
             alert( "Introdu email sau username."
             );
             return false;
         }
-        else if(form.parola.value == ""){ //in caz ca nu am introdus parola primes eroaree
+        else if(form.parola.value == ""){
             alert( "Introdu password." );
             return false;
         }
@@ -54,7 +51,7 @@ if (isset($_REQUEST['submit'])) {
 
 <div class="main-content col-row form__container form__container--login text-dark b-primary bg-neutral100">
     <h1 class="form__title fs-h1">Sign In</h1>
-    <form class="form col-row" action="" method="post">
+    <form name="login" id="login" class="form col-row" action="" method="post">
         <div class="form__field">
             <label class="form__label fs-text" for="username">Username</label>
             <input class="form__data fs-text b-primary text-dark" type="text" name="username" id="username" required/>

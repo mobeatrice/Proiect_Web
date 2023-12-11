@@ -66,10 +66,11 @@ else {
 
         <?php
         //aici afisam articoleele aprobate in partea dreapta
+
         if ($result = $mysqli->query("SELECT * FROM articol WHERE status='aprobat' ORDER BY data_creare"))
         {
         $row = $result->fetch_object();
-        while ($row= $result->fetch_object()) {
+        while ($row= $result->fetch_object() ) {
             $autorValue = $row->autor;
             $categorieValue = $row->id_categorie;
             ?>
