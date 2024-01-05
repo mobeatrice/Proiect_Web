@@ -1,0 +1,149 @@
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.read-article.row{
+    gap: 1.5rem;
+}
+
+.article-content{
+    text-align: center;
+    margin: 1.5rem 0;
+    flex: 1 1 65%;
+}
+
+.title{
+    margin: 0;
+}
+
+.aside-title{
+    align-self: center;
+}
+
+.article-author{
+    width: 80%;
+    text-align: end;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.article-text{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.date-bottom{
+    margin-top: 2rem;
+}
+
+.latest-articles{
+    max-width: 550px;
+    text-align: center;
+    margin: 1.5rem auto;
+    flex: 1 1 30%;
+}
+
+.aside-article{
+    text-align: center;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.btn-group{
+    margin-top: 0.5rem;
+}
+
+.comment-section{
+    width: 100%;
+    margin: 3rem 0 0;
+}
+
+.comment-form{
+    margin-bottom: 2rem;
+}
+
+.comment__content{
+    width: 80%;
+    margin: 1rem 0 0;
+    padding: 0.4rem 2rem;
+    border-radius: 10px;
+}
+
+.fa-user{
+    font-size: 0.85rem;
+    transform: translateY(-3px);
+}
+
+.comment__author{
+    align-self: flex-start;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.comment__text{
+    align-self: flex-start;
+    padding-left: 1rem;
+    font-style: italic;
+}
+
+.comment__btn{
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.comment__btn:hover,
+.comment__btn:focus{
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-dark);
+}
+
+.bg-accent300-op{
+    background-color: rgba(255, 184, 5, 0.5);
+}
+
+.error{
+    margin: 0.5rem auto;
+    text-align: center;
+    color: white;
+    padding: 0.25rem;
+    border-radius: 10px;
+    background-color: crimson;
+}
+
+@media(min-width: 850px){
+    .comment-section.col,
+    .comment__content.col{
+        align-items: flex-start;
+        text-align: start;
+    }
+
+    .comment-section{
+        margin: 3rem 0;
+    }
+
+    .comment__content{
+        margin-left: 1.5rem;
+    }
+
+}
+
+@media(min-width: 1200px){
+    .article-content{
+        flex: 1 1 70%;
+    }
+
+    .latest-articles{
+        flex: 1 1 25%;
+        padding: 0 1rem;
+    }
+}
